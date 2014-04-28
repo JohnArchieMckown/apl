@@ -1,7 +1,0 @@
-3 ⎕CR 'hello'
-5 ⎕CR 'hello'
- ⎕CR 'hello'
- 1 ⎕CR 'hello'
- 2 ⎕CR 'hello'
- 3 ⎕CR 'hello'
-)off
