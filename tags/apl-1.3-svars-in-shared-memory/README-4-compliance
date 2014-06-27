@@ -1,0 +1,62 @@
+
+The following features are not planned to be supported
+------------------------------------------------------
+
+* ⎕NLT
+
+
+The following features may be added (if requested):
+---------------------------------------------------
+
+* more shared variables / auxiliary processors
+
+* ⎕NA
+
+* more ⎕L and ⎕R testcases
+
+
+The following features are planned or will be investigated:
+-----------------------------------------------------------
+
+* Support for SCAR format (to exchange data with Dyalog APL and APL2000).
+
+* operators from NARS2000 (email from Bob Smith, Dec-14-2013)
+
+* versioning of .so files
+
+The following issues are known and maybe fixed mid-term:
+--------------------------------------------------------
+
+* shared variable improvements
+
+* improvements on ⍤ operator
+
+The following extensions are provided:
+--------------------------------------
+
+* various debug commands, see )HELP
+
+* dyadic ⎕CR   (DISPLAY-like value output)
+
+* 3 ⎕TF        (⎕TF with CDR format)
+
+* ⎕ENV B (environment variables)
+    return the values of environment variables whose names starts with B.
+    Return N by 2 matrix, with column 1 containing environment variable names
+    and column 2 their values.
+
+* APL scripting
+    text files beginning with:
+
+    #!apl
+
+    run the interpreter as a shell with the subsequent lines as input.
+
+* ⎕INP
+     HERE-document like input for long texts
+
+* Native APL functions
+    User defined APL functions written in C++
+
+* )DUMP command (save workspace in a format that can be read back with apl -f
+
