@@ -1,0 +1,20 @@
+
+Before you can build GNU APL, make sure that the following
+libraries/packages have been installed:
+
+gcc/g++		from a GNU mirror (directory: gcc, file: gcc-?.?.?.tar.gz)
+make		from a GNU mirror (directory: gcc, file: make-?.?.tar.gz)
+
+If you are using Ubuntu, then the following commands may do the trick:
+
+    apt-get install g++
+
+On Linux Mint 16 (and possibly some other GNU/Linux distributions) you may
+need to install package ncurses-dev in order to uses curses functions,
+for example:
+
+    apt-get install libncurses-dev
+
+On Linux Mint 14.1, GNU APL compiled out-of--the-box.
+
+

@@ -1,0 +1,67 @@
+
+GNU APL has been compiled successfully on non-GNU/Linux systems.
+Some of these systems may require additional settings.
+
+Below are notes from GNU APL users with non-GNU/Linux systems (in
+alphabetical order of the OSs)
+
+===============================================================================
+====									   ====
+====			    CYGWIN 5.1 (Windows)			   ====
+====									   ====
+===============================================================================
+
+GNU APL compiles on CYGWIN, see README-5-WINDOWS for details
+
+
+===============================================================================
+====									   ====
+====			    FreeBSD					   ====
+====									   ====
+===============================================================================
+
+We have the following problem building GNU APL in FreeBSD.
+It can be solved by ./configure'ing GNU APL as shown below.
+
+1. Non-standard library locations. Some of the libraries used by GNU APL.
+   for example libexecinfo, live in /usr/local/lib and not in /usr/lib and
+   may not be found by ./configure. This can be solved by setting LDFLAGS
+   BEFORE running ./configure.
+
+After compiling GNU APL you may want to enable UTF-8 encoding for your
+terminal. For example, in xterm you need enable UTF-8 encoding and
+UTF-8 Fonts in xterm's VT menu (Ctrl + right mouse). It may be possible
+to set this permanently in your terminal's configuration file(s).
+
+Freebsd 8.4
+-------------------------------------------------------------------------------
+
+Many thanks to Sam Sirlin for providing this!
+
+for configure:
+--------------
+
+setenv CC gcc46
+setenv CXX g++46
+setenv LDFLAGS '-L/usr/local/lib -L/usr/local/lib/gcc46 -R/usr/local/lib -R/usr/local/lib/gcc46'
+setenv LIBS ' -lexecinfo ' 
+
+Freebsd 9
+-------------------------------------------------------------------------------
+
+setenv LDFLAGS '-L/usr/local/lib'
+
+
+===============================================================================
+====									   ====
+====			    OS-X					   ====
+====									   ====
+===============================================================================
+
+The latest version (SVN) of GNU APL was reported to compile and run on OS-X
+without special measures.
+
+For Macintosh users, Peter Teeson has contributed a very nice installation
+instructions that can be found in the doc/ subdirectory (file
+APL-on-Macintosh.pdf).
+
