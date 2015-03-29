@@ -1,7 +1,0 @@
-apl (1.1-1) UNRELEASED; urgency=low
-
-  * Portability improved
-    GNU APL 1.1 now runs under GNU/Linux, CYGWIN, FreeBSD, and OS-X
-
- -- Jürgen Sauermann <bug-apl@gnu.org>  Tue, 05 Nov 2013 13:13:00 +0200
-
