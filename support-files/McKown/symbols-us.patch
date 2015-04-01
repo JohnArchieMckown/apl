@@ -1,0 +1,38 @@
+--- us.fedora	2014-02-02 14:40:29.000000000 -0600
++++ us	2015-04-01 09:22:16.670508776 -0500
+@@ -57,11 +57,21 @@
+ };
+ 
+ partial alphanumeric_keys
+-xkb_symbols "euro" {
++xkb_symbols "usapl" {
+ 
++    name[Group1]= "APL (3rd/4th level)";
+     include "us(basic)"
++    include "apl(APL_on_3rd)"
++    include "apl(line_drawing)" 
++    include "level3(lalt_switch)"
++};
++
++xkb_symbols "euro" {
++
+     name[Group1]= "English (US, with euro on 5)";
+ 
++    include "us(basic)"
++
+     include "eurosign(5)"
+ 
+     include "level3(ralt_switch)"
+@@ -1240,9 +1255,10 @@
+ partial alphanumeric_keys
+ xkb_symbols "workman" {
+ 
+-    include "us(basic)"
+     name[Group1]= "English (Workman)";
+ 
++    include "us(basic)"
++
+     key <AD01> {  [   q,  Q   ] };
+     key <AD02> {  [   d,  D   ] };
+     key <AD03> {  [   r,  R   ] };
+

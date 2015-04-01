@@ -1,0 +1,30 @@
+--- evdev.xml.dirk	2014-11-10 21:35:38.000000000 -0600
++++ evdev.xml	2015-04-01 09:21:02.972509523 -0500
+@@ -1290,6 +1290,13 @@
+     </model>
+     <model>
+       <configItem>
++        <name>intelligent_keyboard_k04</name>
++        <description>Intelligent Keyboard K04</description>
++        <vendor>Generic</vendor>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
+        <name>htcdream</name>
+        <description>Htc Dream phone</description>
+        <vendor>htc</vendor>
+@@ -1321,6 +1328,12 @@
+         </variant>
+         <variant>
+           <configItem>
++            <name>usapl</name>
++            <description>APL (3rd/4th level)</description>
++          </configItem>
++        </variant>
++        <variant>
++          <configItem>
+             <name>euro</name>
+             <description>English (US, with euro on 5)</description>
+           </configItem>
+

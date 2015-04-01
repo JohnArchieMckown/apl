@@ -1,0 +1,2 @@
+setxkbmap -option ''
+setxkbmap -model pc105 -layout us,apl -variant 'usapl,apl2' -option 'grp:menu_toggle,caps:capslock,terminate:ctrl_alt_bksp,shift:breaks_caps' 

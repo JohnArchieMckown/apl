@@ -1,0 +1,19 @@
+--- evdev.lst.fedora	2014-11-10 21:35:38.000000000 -0600
++++ evdev.lst	2015-04-01 09:20:17.048509989 -0500
+@@ -183,6 +183,7 @@
+   unitekkb1925    Unitek KB-1925
+   compalfl90      FL90
+   creativedw7000  Creative Desktop Wireless 7000
++  intelligent_keyboard_k04 Intelligent Keyboard K04
+   htcdream        Htc Dream phone
+ 
+ ! layout
+@@ -282,6 +283,7 @@
+ 
+ ! variant
+   chr             us: Cherokee
++  usapl           us: APL (US, with APL on 3rd/4th level, left-alt)
+   euro            us: English (US, with euro on 5)
+   intl            us: English (US, international with dead keys)
+   alt-intl        us: English (US, alternative international)
+

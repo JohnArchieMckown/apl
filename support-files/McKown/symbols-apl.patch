@@ -1,0 +1,140 @@
+--- apl.fedora	2014-09-18 17:38:55.000000000 -0500
++++ apl	2015-04-01 09:21:56.030508985 -0500
+@@ -26,8 +26,6 @@
+ // I'm assuming that this will be used with another keyboard layout (ie. for 
+ // your language), with a special shift key to use these maps.  
+ 
+-// 2012-09-26 changed "overbar" to macron which fixed some strangeness in xterm
+-
+ // 2011-12-22 Geoff Streeter: geoff@dyalog.com
+ // Added the Dyalog support.
+ // Corrected (what he thinks) are some errors.
+@@ -40,9 +38,19 @@
+ // better than using the "common" one. Choosing the complete Dyalog layout is not useful to non-Dyalog
+ // users.
+ 
+-default partial alphanumeric_keys
++// 2015-02-08 Dirk Laurie: dirk.laurie@gmail.com
++// Added options for Level 3 selection, allowing the normal ASCII keyboard
++// to function as usual.
++// "APL_on_3rd" requires activation of a Level 3 Chooser key.
++// "line_drawing" gives the same characters as "dyalog_box", but they are 
++//   by Shift or NumLock.
++
++
++default  partial alphanumeric_keys
+ xkb_symbols "basic" {
+ 	include "apl(dyalog_base)"	// forward reference good APL keyboard without Dyalogs extras
++
++	name[Group1]= "APL keyboard symbols";
+ };
+ 
+ // ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
+@@ -613,3 +611,107 @@
+ 	name[Group1] = "APL keyboard symbols (Dyalog)";
+ };
+ 
++partial hidden keypad_keys
++xkb_symbols "line_drawing" {
++// as dyalog_box but double-lined and enabled with NumLock
++
++// ┌───┬───┬───┬───┐
++// │   │   │   │   │
++// ├───┼───┼───┼───┤
++// │ ╔ │ ╦ │ ╗ │   │
++// ├───┼───┼───┤   │
++// │ ╠ │ ╬ │ ╣ │   │
++// ├───┼───┼───┼───┤
++// │ ╚ │ ╩ │ ╝ │   │
++// ├───┴───┼───┤   │
++// │   ═   │ ║ │   │
++// └───────┴───┴───┘
++
++	key <KP0>  { [ NoSymbol, U2550 ] };	// box drawing horizontal
++	key <KP1>  { [ NoSymbol, U255a ] };	// box drawing up and right
++	key <KP2>  { [ NoSymbol, U2569 ] };	// box drawing up and horizontal
++	key <KP3>  { [ NoSymbol, U255d ] };	// box drawing up and left
++	key <KP4>  { [ NoSymbol, U2560 ] };	// box drawing vertical and right
++	key <KP5>  { [ NoSymbol, U256c ] };	// box drawing vertical and horizontal
++	key <KP6>  { [ NoSymbol, U2563 ] };	// box drawing vertical and left
++	key <KP7>  { [ NoSymbol, U2554 ] };	// box drawing down and right
++	key <KP8>  { [ NoSymbol, U2566 ] };	// box drawing down and horizontal
++	key <KP9>  { [ NoSymbol, U2557 ] };	// box drawing down and left
++	key <KPDL> { [ NoSymbol, U2551 ] };	// box drawing vertical
++
++}; 
++
++
++// Like "dyalog_basic", but puts APL characters on third and fourth level, keeping
++// the standard characters. Adds lambda and quad-backslash.
++partial hidden alphanumeric_keys
++xkb_symbols "APL_on_3rd" {
++
++
++// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
++// │     │   ⌶ │   ⍫ │   ⍒ │   ⍋ │   ⌽ │   ⍉ │   ⊖ │   ⍟ │   ⍱ │   ⍲ │   ! │   ⌹ ┃         ┃
++// │   ⋄ │   ¨ │   ¯ │   < │   ≤ │   = │   ≥ │   > │   ≠ │   ∨ │   ∧ │   × │   ÷ ┃         ┃
++// ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┳━━━━━━━┫
++// ┃       ┃     │   ⍹ │   ⍷ │     │   ⍨ │   ¥ │     │   ⍸ │   ⍥ │   ⍣ │   ⍞ │   ⍬ ┃       ┃
++// ┃       ┃   ? │   ⍵ │   ∊ │   ⍴ │   ~ │   ↑ │   ↓ │   ⍳ │   ○ │   * │   ← │   → ┃       ┃
++// ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┺┓      ┃
++// ┃        ┃   ⍶ │   § │     │   λ │     │   ⍙ │   ⍤ │   ⍂ │   ⌷ │   ≡ │   ≢ │   ⊣ ┃      ┃
++// ┃        ┃   ⍺ │   ⌈ │   ⌊ │   _ │   ∇ │   ∆ │   ∘ │   ' │   ⎕ │   ⍎ │   ⍕ │   ⊢ ┃      ┃
++// ┣━━━━━━━┳┹────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┲┷━━━━━┻━━━━━━┫
++// ┃       ┃     │     │   χ │   ¢ │     │   £ │     │     │   ⍪ │   ⍙ │   ⍠ ┃             ┃
++// ┃       ┃     │   ⊂ │   ⊃ │   ∩ │   ∪ │   ⊥ │   ⊤ │   | │   ⍝ │   ⍀ │   ⌿ ┃             ┃
++// ┣━━━━━━━╋━━━━━┷━┳━━━┷━━━┱─┴─────┴─────┴─────┴─────┴─────┴───┲━┷━━━━━╈━━━━━┻━┳━━━━━━━┳━━━┛
++// ┃       ┃       ┃       ┃                                   ┃       ┃       ┃       ┃
++// ┃       ┃       ┃       ┃                                   ┃       ┃       ┃       ┃
++// ┗━━━━━━━┻━━━━━━━┻━━━━━━━┹───────────────────────────────────┺━━━━━━━┻━━━━━━━┻━━━━━━━┛
++
++
++	key <AB01> { [ NoSymbol, NoSymbol, U2282		] };	// subset of
++	key <AB02> { [ NoSymbol, NoSymbol, U2283,       U03c7	] };	// superset of, chi
++	key <AB03> { [ NoSymbol, NoSymbol, U2229,	U00a2 	] };	// intersection, cent
++	key <AB04> { [ NoSymbol, NoSymbol, U222A		] };	// union
++	key <AB05> { [ NoSymbol, NoSymbol, U22a5,	U00a3	] };	// up tack, pound
++	key <AB06> { [ NoSymbol, NoSymbol, U22a4		] };	// down tack
++	key <AB07> { [ NoSymbol, NoSymbol, U007c		] };	// vertical line
++	key <AB08> { [ NoSymbol, NoSymbol, U235d,	U236a	] };	// up shoe jot, comma bar
++	key <AB09> { [ NoSymbol, NoSymbol, U2340,	U2359	] };	// backslash bar, delta underbar
++	key <AB10> { [ NoSymbol, NoSymbol, U233f,       U2360	] };	// slash bar, quad colon
++	key <AC01> { [ NoSymbol, NoSymbol, U237a,       U2376	] };	// alpha, alpha underbar
++	key <AC02> { [ NoSymbol, NoSymbol, U2308		] };	// left ceiling
++	key <AC03> { [ NoSymbol, NoSymbol, U230a		] };	// left floor
++	key <AC04> { [ NoSymbol, NoSymbol, underscore,	U03BB	] };	// , lambda
++	key <AC05> { [ NoSymbol, NoSymbol, U2207		] };	// nabla
++	key <AC06> { [ NoSymbol, NoSymbol, U2206,       U2359	] };	// increment, delta underbar
++	key <AC07> { [ NoSymbol, NoSymbol, U2218,	U2364	] };	// ring operator, jot diaeresis
++	key <AC08> { [ NoSymbol, NoSymbol, apostrophe,	U2342	] };    // , quad-backslash
++	key <AC09> { [ NoSymbol, NoSymbol, U2395,	U2337	] };	// quad, squish quad
++	key <AC10> { [ NoSymbol, NoSymbol, U234e,	U2261	] };	// up tack jot, identical to
++	key <AC11> { [ NoSymbol, NoSymbol, U2355,	U2262	] };	// down tack jot,  not identical to
++	key <AD01> { [ NoSymbol, NoSymbol, question		] };
++	key <AD02> { [ NoSymbol, NoSymbol, U2375,       U2379   ] };	// omega, omega underbar
++	key <AD03> { [ NoSymbol, NoSymbol, U220a,	U2377	] };	// small element of, epsilon underbar
++	key <AD04> { [ NoSymbol, NoSymbol, U2374		] };	// rho
++	key <AD05> { [ NoSymbol, NoSymbol, asciitilde,	U2368	] };	// tilde, tilde diaeresis
++	key <AD06> { [ NoSymbol, NoSymbol, U2191,       U00A5   ] };	// upwards arrow, yen
++	key <AD07> { [ NoSymbol, NoSymbol, U2193		] };	// downwards arrow
++	key <AD08> { [ NoSymbol, NoSymbol, U2373,	U2378	] };	// iota, iota underbar
++	key <AD09> { [ NoSymbol, NoSymbol, U25cb,	U2365	] };	// circle, circle diaeresis
++	key <AD10> { [ NoSymbol, NoSymbol, asterisk,	U2363	] };	// asterisk, star diaeresis
++	key <AD11> { [ NoSymbol, NoSymbol, U2190,	U235e	] };	// left arrow, quote quad
++	key <AD12> { [ NoSymbol, NoSymbol, U2192,	U236c	] };	// right arrow, zilde
++	key <AE01> { [ NoSymbol, NoSymbol, diaeresis,	U2336	] };	// i-beam
++	key <AE02> { [ NoSymbol, NoSymbol, overbar,	U236B	] };	// deltilde
++	key <AE03> { [ NoSymbol, NoSymbol, less,	U2352	] };	// downgrade
++	key <AE04> { [ NoSymbol, NoSymbol, U2264,	U234b	] };	// lesseq upgrade
++	key <AE05> { [ NoSymbol, NoSymbol, equal,	U233d	] };	// circlestile
++	key <AE06> { [ NoSymbol, NoSymbol, U2265,	U2349	] };	// greatereq circleslope
++	key <AE07> { [ NoSymbol, NoSymbol, greater,	U2296	] };	// circlebar
++	key <AE08> { [ NoSymbol, NoSymbol, U2260,	U235f	] };	// notequal, circlestar
++	key <AE09> { [ NoSymbol, NoSymbol, U2228,	U2371	] };	// logical or, down caret tilde
++	key <AE10> { [ NoSymbol, NoSymbol, U2227,	U2372	] };	// logical and, up caret tilde
++	key <AE11> { [ NoSymbol, NoSymbol, multiply,	exclam	] };
++	key <AE12> { [ NoSymbol, NoSymbol, division,	U2339	] };	//  quad divide
++	key <BKSL> { [ NoSymbol, NoSymbol, U22a2,	U22a3	] };	// right tack, left tack
++	key <TLDE> { [ NoSymbol, NoSymbol, U22c4		] };	// diamond
++};
++
